@@ -29,7 +29,7 @@ class BaseModel:
 
 
     def __str__(self):
-        """"""
+        """print the class name, id and directory"""
         return ("[{}] ({}) {}".format(self.__class__.__name__,
                                     self.id, self.__dict__))
 
