@@ -25,7 +25,7 @@ class HBNBCommand(cmd.Cmd):
         if not _input_class_name:
             print("** class name missing **")
             return
-        if _input_class_name not in BaseModel
+        if _input_class_name not in BaseModel:
             print("** class doesn't exist **")
             return
         newinstance = classes_dict[_input_class_name]()
