@@ -4,10 +4,7 @@
     <list default="true" id="20ec689f-27c6-48c6-9d47-9ced2ef43009" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/console.py" beforeDir="false" afterPath="$PROJECT_DIR$/console.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/file.json" beforeDir="false" afterPath="$PROJECT_DIR$/file.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/base_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/base_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/engine/file_storage.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/engine/file_storage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_base_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_base_model.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +79,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="455" y="129" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1582139497431">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="455" y="129" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.27.1366.741@0.27.1366.741" timestamp="1582139497431" />
     <state x="252" y="27" width="782" height="741" key="CommitChangelistDialog2" timestamp="1581962755004">
       <screen x="0" y="27" width="1366" height="741" />
     </state>

@@ -130,3 +130,6 @@ dmypy.json
 
 # tests main
 test_base_model.py
+
+# File Json
+file.json

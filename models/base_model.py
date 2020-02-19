@@ -39,9 +39,6 @@ class BaseModel:
     def to_dict(self):
         """returns a dictionary """
         newbase = self.__dict__.copy()
-        #newbase.update({"__class__": self.__class__.__name__})
-        #newbase.update({"created_at": self.created_at.isoformat()})
-        #newbase.update({"updated_at": self.updated_at.isoformat()})
         newbase["__class__"] =self.__class__.__name__
         newbase["created_at"]=self.created_at.isoformat()
         newbase["updated_at"]=self.updated_at.isoformat()

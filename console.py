@@ -9,7 +9,7 @@ classes_dict = {
 
 
 class HBNBCommand(cmd.Cmd):
-    classes_dict.keys()
+    collection_keys = classes_dict.keys()
     prompt = '(hbnb)'
 
     def do_quit(self, _input):
@@ -22,6 +22,7 @@ class HBNBCommand(cmd.Cmd):
         return False
 
     def do_create(self, _input_class_name):
+        """Creates a new instance of BaseModel in JSON"""
         if not _input_class_name:
             print("** class name missing **")
             return
@@ -36,9 +37,20 @@ class HBNBCommand(cmd.Cmd):
         if len(_input.split(' ')[0]) is 0:
             print("** class name missing **")
             return
-        if _input.split(' ')[0] not in classes_dict:
+        if _input.split(' ')[0] not in self.collection_keys:
             print("** class doesn't exist **")
             return
+        if len(_input.split) is 1:
+            print("** instance id missing **")
+            return
+        if
+
+    def do_destroy(self, _input):
+        if len(_input.split(' ')[0]) is 0:
+            print("** class name missing **")
+            return
+        if _input.split(' ')[0] not in self.collection_keys:
+            print("")
 
 
 if __name__ == '__main__':
