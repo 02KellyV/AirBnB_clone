@@ -129,5 +129,5 @@ JSON of my_model:
 
 ## Authors
 
-[Pablo A. Sánchez M.](https://github.com/jackeado) | [Kelly Villa Collazos](https://github.com/02KellyV)
+[Pablo A. Sánchez M.](https://github.com/jackeado) | [Kelly Villa C.](https://github.com/02KellyV)
 
