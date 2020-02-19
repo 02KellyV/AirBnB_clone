@@ -81,7 +81,7 @@ $
 
 ## Examples
 
-In the AirBnB_clone directory create the file named "test_base_model.py" with the following code:
+In the AirBnB_clone directory create the file named "test_base_model.py" with the following code: 
 
 ```
 #!/usr/bin/python3
