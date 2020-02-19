@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import cmd
-from models.base_model import BaseModel
+import models
+
 """
 """
 classes_dict = {
@@ -33,7 +34,26 @@ class HBNBCommand(cmd.Cmd):
         newinstance.save()
         print(newinstance.id)
 
-    def do_show(self):
+    def do_show(self, _input):
+        input2 = _input
+        if len(input2.split(' ')[0]) is 0:
+            print("** class name missing **")
+            return
+        if input2.split(' ')[0] not in self.collection_keys:
+            print("** class doesn't exist **")
+            return
+        if len(input2.split) is 1:
+            print("** instance id missing **")
+            return
+
+        models.storage.reload()
+        for key, value in models.storage.all().items():
+            if value.__class__.__name__ == input2[0] and value.id == input2[1]:
+                print(value.__str__())
+                return
+        print("** no instance found **")
+
+    def do_destroy(self, _input):
         if len(_input.split(' ')[0]) is 0:
             print("** class name missing **")
             return
@@ -43,15 +63,22 @@ class HBNBCommand(cmd.Cmd):
         if len(_input.split) is 1:
             print("** instance id missing **")
             return
-        if
 
-    def do_destroy(self, _input):
-        if len(_input.split(' ')[0]) is 0:
-            print("** class name missing **")
-            return
-        if _input.split(' ')[0] not in self.collection_keys:
-            print("")
+        models.storage.reload()
+        delint = models.storage.all()
+        for key, value in delint.items():
+            if value.__class__.__name__ == _input[0] and value.id == _input[1]:
+                del(delint[key])
+                return
+        print("** no instance found **")
 
+    def all(self, _input_class):
+        if _input_class:
+            if _input_class not in self.collection_keys:
+                print("** class doesn't exist **")
+        for key_items in models.storage.all().keys():
+            key_items = models.storage.all()[key_items]
+            print(key_items)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
