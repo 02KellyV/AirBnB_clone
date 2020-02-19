@@ -8,13 +8,11 @@ import models
 
 
 class BaseModel:
-    created_at = datetime.now()
-    updated_at = datetime.now()
+
 
     """A BaseModel class"""
     def __init__(self, *args, **kwargs):
         """Initialize class base"""
-        self.id = str(uuid4())
         if kwargs:
             for keys, value in kwargs.items():
                 if keys != "__class__":
@@ -24,7 +22,7 @@ class BaseModel:
         else:
             self.id = str(uuid4())
             self.created_at = datetime.now()
-            self.updated_at = datetime.now()
+            self.updated_at = self.created_at
             models.storage.new(self)
 
 
@@ -41,7 +39,7 @@ class BaseModel:
     def to_dict(self):
         """returns a dictionary """
         newbase = self.__dict__.copy()
-        newbase.update({"__class__": self.__class__.__name__})
-        newbase.update({"created_at": self.created_at.isoformat()})
-        newbase.update({"updated_at": self.updated_at.isoformat()})
+        newbase["__class__"] =self.__class__.__name__
+        newbase["created_at"]=self.created_at.isoformat()
+        newbase["updated_at"]=self.updated_at.isoformat()
         return newbase
