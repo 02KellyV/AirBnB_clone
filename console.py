@@ -61,7 +61,7 @@ class HBNBCommand(cmd.Cmd):
             return
         models.storage.reload()
         for key, value in models.storage.all().items():
-            if value.__class__.__name__ == input2[0] and value.id == input2[1]:
+            if value.__class__.__name__ == input2.split(' ')[0] and value.id == input2.split(' ')[1]:
                 print(value.__str__())
                 return
         print("** no instance found **")
@@ -75,7 +75,7 @@ class HBNBCommand(cmd.Cmd):
         if _input.split(' ')[0] not in self.collection_keys:
             print("** class doesn't exist **")
             return
-        if len(_input.split) is 1:
+        if len(_input.split(' ')) is 1:
             print("** instance id missing **")
             return
 
