@@ -78,14 +78,11 @@ class HBNBCommand(cmd.Cmd):
         if len(_input.split(' ')) is 1:
             print("** instance id missing **")
             return
-
         class_name, class_id = (_input.split(' ')[0], _input.split(' ')[1])
         query_key = class_name + '.' + class_id
-
         if query_key not in models.storage.all().keys():
             print("** no instance found **")
             return
-
         del models.storage.all()[query_key]
         models.storage.save()
 
@@ -155,6 +152,7 @@ class HBNBCommand(cmd.Cmd):
                 print(count)
         else:
             print("*** Unknown syntax: {}".format(inp))
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
