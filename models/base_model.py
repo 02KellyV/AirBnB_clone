@@ -40,4 +40,3 @@ class BaseModel:
         newbase["created_at"] = self.created_at.isoformat()
         newbase["updated_at"] = self.updated_at.isoformat()
         return newbase
-
