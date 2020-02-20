@@ -61,7 +61,8 @@ class HBNBCommand(cmd.Cmd):
             return
         models.storage.reload()
         for key, value in models.storage.all().items():
-            if value.__class__.__name__ == input2.split(' ')[0] and value.id == input2.split(' ')[1]:
+            if value.__class__.__name__ == input2.split(' ')[0] \
+               and value.id == input2.split(' ')[1]:
                 print(value.__str__())
                 return
         print("** no instance found **")
