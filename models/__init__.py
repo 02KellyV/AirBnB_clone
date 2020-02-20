@@ -7,4 +7,3 @@ from models import base_model
 
 storage = FileStorage()
 storage.reload()
-
