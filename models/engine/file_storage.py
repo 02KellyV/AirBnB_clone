@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+""" File Storage Module"""
+
 import json
 import os.path
 from models.base_model import BaseModel
@@ -10,19 +13,22 @@ from models.review import Review
 
 
 class FileStorage:
-    """ """
+    """Class for Serializes and Deserializes"""
 
     __file_path = 'file.json'
     __objects = {}
 
     def all(self):
+        """returns the dict __objects"""
         return self.__objects
 
     def new(self, obj):
+        """sets in __objects, key classname.id val= obj"""
         main_key = obj.__class__.__name__ + '.' + obj.id
         self.__objects.update({main_key: obj})
 
     def save(self):
+        """serializes __objects to JSON"""
         newdict = {}
         with open(self.__file_path, 'w', encoding="UTF-8") as filejson:
             for key, value in self.__objects.items():

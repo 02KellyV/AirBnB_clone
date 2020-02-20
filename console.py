@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+""" console  """
 import cmd
 import models
 from models.base_model import BaseModel
@@ -16,6 +17,7 @@ classes_dict = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
 
 
 class HBNBCommand(cmd.Cmd):
+    """ Entry point of the command interpreter """
     collection_keys = classes_dict.keys()
     prompt = '(hbnb)'
 
@@ -56,7 +58,6 @@ class HBNBCommand(cmd.Cmd):
         if len(input2.split()) is 1:
             print("** instance id missing **")
             return
-
         models.storage.reload()
         for key, value in models.storage.all().items():
             if value.__class__.__name__ == input2[0] and value.id == input2[1]:
@@ -66,7 +67,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, _input):
         """Deletes an instance based on the class name and id
-            """
+        """
         if len(_input.split(' ')[0]) is 0:
             print("** class name missing **")
             return
@@ -90,7 +91,7 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, _input_class):
         """Prints all string representation of all instances
             based or not on the class name
-         """
+        """
 
         if _input_class:
             if _input_class not in self.collection_keys:
@@ -112,26 +113,20 @@ class HBNBCommand(cmd.Cmd):
         if len(_input) is 0:
             print("** class name missing **")
             return
-
         if _input[0] not in self.collection_keys:
             print("** class doesn't exist **")
             return
-
         if len(_input) is 1:
             print("** instance id missing **")
             return
-
         if len(_input) > 1:
             query_key = _input[0] + '.' + _input[1]
-
         if query_key not in models.storage.all().keys():
             print("** no instance found **")
             return
-
         if len(_input) is 2:
             print('** attribute name missing **')
             return
-
         if len(_input) is 3:
             print('** value missing **')
             return
