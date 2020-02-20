@@ -1,7 +1,3 @@
-#!/usr/bin/python3
-"""
-
-"""
 import json
 from models.base_model import BaseModel
 from models.amenity import Amenity
@@ -10,7 +6,6 @@ from models.place import Place
 from models.state import State
 from models.user import User
 from models.review import Review
-
 
 
 class FileStorage:
@@ -30,18 +25,14 @@ class FileStorage:
         newdict = {}
         with open(self.__file__path, 'w', encoding="UTF-8") as filejson:
             for key, value in self.__objects.items():
-                newdict[key] = value.to_dict()
-            #json.dump(newdict, filejson)
+                newdict[key] = value.to_dict()  # json.dump(newdict, filejson)
             filejson.write(json.dumps(newdict))
 
     def reload(self):
-        try:
-            with open(self.__file__path, 'r', encoding='UTF-8') as file:
-                text = file.read()
-                if (len(text) > 0):
-                    dicty = json.loads(text)
-                    for key, value in dicty.items():
-                        x = eval(value["__class__"])(**value)
-                        self.__objects[key] = x
-        except:
-            pass
+        with open(self.__file__path, 'r', encoding='UTF-8') as file:
+            text = file.read()
+            if (len(text) > 0):
+                dicty = json.loads(text)
+                for key, value in dicty.items():
+                    x = eval(value["__class__"])(**value)
+                    self.__objects[key] = x

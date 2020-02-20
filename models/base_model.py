@@ -1,13 +1,9 @@
-!/usr/bin/python3
-"""
-This contains a base class
-"""
-
 from uuid import uuid4
 from datetime import datetime
 import models
 
 time = "%Y-%m-%dT%H:%M:%S.%f"
+
 
 class BaseModel:
     """A BaseModel class"""
