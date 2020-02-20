@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+!/usr/bin/python3
 """
 This contains a base class
 """
@@ -8,9 +8,8 @@ import models
 
 
 class BaseModel:
-
-
     """A BaseModel class"""
+
     def __init__(self, *args, **kwargs):
         """Initialize class base"""
         if kwargs:
