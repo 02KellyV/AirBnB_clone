@@ -49,5 +49,6 @@ class Test_BaseModel(unittest.TestCase):
         self.assertEqual(type(a).__name__, "Place")
         self.assertFalse(hasattr(a, "8"))
 
+
 if __name__ == "__main__":
     unittest.main()
