@@ -11,12 +11,16 @@ from models.state import State
 from models.user import User
 from models.review import Review
 
+classes = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
+           "Place": Place, "Review": Review, "State": State, "User": User}
 
 class FileStorage:
     """Class for Serializes and Deserializes"""
-
-    __file_path = 'file.json'
-    __objects = {}
+    def __init__(self):
+        """string - path to the JSON file"""
+        self.__file_path = 'file.json'
+        """dictionary - empty but will store all objects by <class name>.id"""
+        self.__objects = {}
 
     def all(self):
         """returns the dict __objects"""
