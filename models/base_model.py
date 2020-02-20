@@ -5,8 +5,6 @@ from uuid import uuid4
 from datetime import datetime
 import models
 
-time = "%Y-%m-%dT%H:%M:%S.%f"
-
 
 class BaseModel:
     """A BaseModel class"""
@@ -14,11 +12,11 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         """Initialize class base"""
         if kwargs:
-            for keys, value in kwargs.items():
+            for keys, val in kwargs.items():
                 if keys != "__class__":
                     if keys == "created_at" or keys == "updated_at":
-                        value = datetime.strptime(value, time)
-                    setattr(self, keys, value)
+                        val = datetime.strptime(val, "%Y-%m-%dT%H:%M:%S.%f")
+                    setattr(self, keys, val)
         else:
             self.id = str(uuid4())
             self.created_at = datetime.now()
@@ -42,3 +40,4 @@ class BaseModel:
         newbase["created_at"] = self.created_at.isoformat()
         newbase["updated_at"] = self.updated_at.isoformat()
         return newbase
+
