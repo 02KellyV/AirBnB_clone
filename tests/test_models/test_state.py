@@ -1,54 +1,37 @@
 #!/usr/bin/python3
-""" Unittests State obj Module"""
-
+"""Test State"""
 import unittest
-from models import storage
-from models.state import State
-import json
-import os
 import pep8
-import uuid
+from models.base_model import BaseModel
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.state import State
+from models.review import Review
+from models.user import User
 
 
-class Test_BaseModel(unittest.TestCase):
-    """ Test State obj Methods """
+class Teststate(unittest.TestCase):
 
-    def test_assert_stylepep8_amenity(self):
-        """ Test for style model """
-        style = pep8.StyleGuide(quiet=True)
-        new = style.check_files(['models/state.py'])
-        self.assertEqual(new.total_errors, 0, "Error pep8 base model")
+    def test_pep8_conformance_state(self):
+        """Test that we conform to PEP8."""
+        pep8style = pep8.StyleGuide(quiet=True)
+        result = pep8style.check_files(['models/state.py'])
+        self.assertEqual(result.total_errors, 0,
+                         "Found code style errors (and warnings).")
 
-    def test_assert_stylepep8_testsamenity(self):
-        """ Test for style tests """
-        style = pep8.StyleGuide(quiet=True)
-        new = style.check_files(['tests/test_models/test_state.py'])
-        self.assertEqual(new.total_errors, 0, "Error pep8 tests")
+    def test_class(self):
+        state1 = State()
+        self.assertEqual(state1.__class__.__name__, "State")
 
-    def test_assert_docstring(self):
-        """ Test docstring """
-        self.assertTrue(len(State.__doc__) > 1)
-        self.assertTrue(len(State.__init__.__doc__) > 1)
-        self.assertTrue(len(State.__str__.__doc__) > 1)
-        self.assertTrue(len(State.save.__doc__) > 1)
-        self.assertTrue(len(State.to_dict.__doc__) > 1)
+    def test_father(self):
+        state1 = State()
+        self.assertEqual(state1.__class__.__name__, "State")
 
-    def test_assert_is_instance(self):
-        """ Test init instance is ok """
-        a = State()
-        self.asserIsInstance(a, State)
-
-    def test_assert_is_subclass(self):
-        """ Test State is subclss BaseM """
-        a = State()
-        self.assertTrue(issubclass(self.a.__class__, BaseModel), True)
-
-    def test_assert_args(self):
-        """Test State have args"""
-        a = State(8)
-        self.assertEqual(type(a).__name__, "State")
-        self.assertFalse(hasattr(a, "8"))
-
-
-if __name__ == "__main__":
-    unittest.main()
+    def test_state(self):
+        """
+        Test attributes of Class State
+        """
+        my_state = State()
+        my_state.name = "Antioquia"
+        self.assertEqual(my_state.name, 'Antioquia')

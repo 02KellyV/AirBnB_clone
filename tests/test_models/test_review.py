@@ -1,54 +1,43 @@
 #!/usr/bin/python3
-""" Unittests Review obj Module"""
-
+"""Test Review"""
 import unittest
-from models import storage
-from models.review import Review
-import json
-import os
 import pep8
-import uuid
+from models.base_model import BaseModel
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.state import State
+from models.review import Review
+from models.user import User
 
 
-class Test_BaseModel(unittest.TestCase):
-    """ Test Review obj Methods """
+class Testreview(unittest.TestCase):
 
-    def test_assert_stylepep8_amenity(self):
-        """ Test for style model """
-        style = pep8.StyleGuide(quiet=True)
-        new = style.check_files(['models/review.py'])
-        self.assertEqual(new.total_errors, 0, "Error pep8 base model")
+    def test_pep8_conformance_review(self):
+        """Test that we conform to PEP8."""
+        pep8style = pep8.StyleGuide(quiet=True)
+        result = pep8style.check_files(['models/review.py'])
+        self.assertEqual(result.total_errors, 0,
+                         "Found code style errors (and warnings).")
 
-    def test_assert_stylepep8_testsamenity(self):
-        """ Test for style tests """
-        style = pep8.StyleGuide(quiet=True)
-        new = style.check_files(['tests/test_models/test_review.py'])
-        self.assertEqual(new.total_errors, 0, "Error pep8 tests")
+    def test_class(self):
+        rev1 = Review()
+        self.assertEqual(rev1.__class__.__name__, "Review")
 
-    def test_assert_docstring(self):
-        """ Test docstring """
-        self.assertTrue(len(Review.__doc__) > 1)
-        self.assertTrue(len(Review.__init__.__doc__) > 1)
-        self.assertTrue(len(Review.__str__.__doc__) > 1)
-        self.assertTrue(len(Review.save.__doc__) > 1)
-        self.assertTrue(len(Review.to_dict.__doc__) > 1)
+    def test_father(self):
+        rev1 = Review()
+        self.assertTrue(issubclass(rev1.__class__, BaseModel))
 
-    def test_assert_is_instance(self):
-        """ Test init instance is ok """
-        a = Review()
-        self.asserIsInstance(a, Review)
-
-    def test_assert_is_subclass(self):
-        """ Test review is subclss BaseM """
-        a = Review()
-        self.assertTrue(issubclass(self.a.__class__, BaseModel), True)
-
-    def test_assert_args(self):
-        """Test review have args"""
-        a = Review(8)
-        self.assertEqual(type(a).__name__, "Review")
-        self.assertFalse(hasattr(a, "8"))
-
-
-if __name__ == "__main__":
-    unittest.main()
+    def test_review(self):
+        """
+        Test review
+        """
+        my_place = Place()
+        my_user = User()
+        my_review = Review()
+        my_review.place_id = my_place.id
+        my_review.user_id = my_user.id
+        my_review.text = 'holberton'
+        self.assertEqual(my_review.place_id, my_place.id)
+        self.assertEqual(my_review.user_id, my_user.id)
+        self.assertEqual(my_review.text, 'holberton')

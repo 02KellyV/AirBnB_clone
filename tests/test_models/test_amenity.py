@@ -1,54 +1,34 @@
 #!/usr/bin/python3
-""" Unittests Amenity obj Module"""
-
+"""Test Amenity"""
 import unittest
-from models import storage
-from models.amenity import Amenity
-import json
-import os
 import pep8
-import uuid
+from models.base_model import BaseModel
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.state import State
+from models.review import Review
 
 
-class Test_BaseModel(unittest.TestCase):
-    """ Test Amenity obj Methods """
+class Testamenity(unittest.TestCase):
 
-    def test_assert_stylepep8_amenity(self):
-        """ Test for style model """
-        style = pep8.StyleGuide(quiet=True)
-        new = style.check_files(['models/amenity.py'])
-        self.assertEqual(new.total_errors, 0, "Error pep8 base model")
+    def test_pep8_conformance_amenity(self):
+        """Test that we conform to PEP8."""
+        pep8style = pep8.StyleGuide(quiet=True)
+        result = pep8style.check_files(['models/amenity.py'])
+        self.assertEqual(result.total_errors, 0,
+                         "Found code style errors (and warnings).")
 
-    def test_assert_stylepep8_testsamenity(self):
-        """ Test for style tests """
-        style = pep8.StyleGuide(quiet=True)
-        new = style.check_files(['tests/test_models/test_amenity.py'])
-        self.assertEqual(new.total_errors, 0, "Error pep8 tests")
+    def test_class(self):
+        amenity1 = Amenity()
+        self.assertEqual(amenity1.__class__.__name__, "Amenity")
 
-    def test_assert_docstring(self):
-        """ Test docstring """
-        self.assertTrue(len(Amenity.__doc__) > 1)
-        self.assertTrue(len(Amenity.__init__.__doc__) > 1)
-        self.assertTrue(len(Amenity.__str__.__doc__) > 1)
-        self.assertTrue(len(Amenity.save.__doc__) > 1)
-        self.assertTrue(len(Amenity.to_dict.__doc__) > 1)
+    def test_father(self):
+        amenity1 = Amenity()
+        self.assertTrue(issubclass(amenity1.__class__, BaseModel))
 
-    def test_assert_is_instance(self):
-        """ Test init instance is ok """
-        a = Amenity()
-        self.asserIsInstance(a, Amenity)
-
-    def test_assert_is_subclass(self):
-        """ Test amenity is subclss BaseM """
-        a = Amenity()
-        self.assertTrue(issubclass(self.a.__class__, BaseModel), True)
-
-    def test_assert_args(self):
-        """Test amenity have args"""
-        a = Amenity(8)
-        self.assertEqual(type(a).__name__, "Amenity")
-        self.assertFalse(hasattr(a, "8"))
-
-
-if __name__ == "__main__":
-    unittest.main()
+    def test_amenity(self):
+        """Test attributes of Class Amenity"""
+        my_amenity = Amenity()
+        my_amenity.name = "Wi-Fi"
+        self.assertEqual(my_amenity.name, 'Wi-Fi')

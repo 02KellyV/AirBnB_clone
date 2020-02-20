@@ -1,54 +1,33 @@
 #!/usr/bin/python3
-""" Unittests User obj Module"""
-
+"""Test User"""
 import unittest
-from models import storage
-from models.user import User
-import json
-import os
 import pep8
-import uuid
+from models.base_model import BaseModel
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.state import State
+from models.review import Review
+from models.user import User
 
 
-class Test_BaseModel(unittest.TestCase):
-    """ Test User obj Methods """
+class Testuser(unittest.TestCase):
 
-    def test_assert_stylepep8_amenity(self):
-        """ Test for style model """
-        style = pep8.StyleGuide(quiet=True)
-        new = style.check_files(['models/user.py'])
-        self.assertEqual(new.total_errors, 0, "Error pep8 base model")
+    def test_pep8_conformance_user(self):
+        """Test that we conform to PEP8."""
+        pep8style = pep8.StyleGuide(quiet=True)
+        result = pep8style.check_files(['models/user.py'])
+        self.assertEqual(result.total_errors, 0,
+                         "Found code style errors (and warnings).")
 
-    def test_assert_stylepep8_testsamenity(self):
-        """ Test for style tests """
-        style = pep8.StyleGuide(quiet=True)
-        new = style.check_files(['tests/test_models/test_user.py'])
-        self.assertEqual(new.total_errors, 0, "Error pep8 tests")
-
-    def test_assert_docstring(self):
-        """ Test docstring """
-        self.assertTrue(len(User.__doc__) > 1)
-        self.assertTrue(len(User.__init__.__doc__) > 1)
-        self.assertTrue(len(User.__str__.__doc__) > 1)
-        self.assertTrue(len(User.save.__doc__) > 1)
-        self.assertTrue(len(User.to_dict.__doc__) > 1)
-
-    def test_assert_is_instance(self):
-        """ Test init instance is ok """
-        a = User()
-        self.asserIsInstance(a, User)
-
-    def test_assert_is_subclass(self):
-        """ Test User is subclss BaseM """
-        a = User()
-        self.assertTrue(issubclass(self.a.__class__, BaseModel), True)
-
-    def test_assert_args(self):
-        """Test User have args"""
-        a = User(8)
-        self.assertEqual(type(a).__name__, "User")
-        self.assertFalse(hasattr(a, "8"))
-
-
-if __name__ == "__main__":
-    unittest.main()
+    def test_User(self):
+        """
+        Test attributes of Class Use
+        """
+        my_user = User()
+        my_user.first_name = 'Holberton'
+        my_user.last_name = 'School'
+        my_user.email = '2020@holbertonschool.com'
+        self.assertEqual(my_user.first_name, 'Holberton')
+        self.assertEqual(my_user.last_name, 'School')
+        self.assertEqual(my_user.email, '2020@holbertonschool.com')
