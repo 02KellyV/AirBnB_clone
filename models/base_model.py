@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """ Base Model Module """
+
 from uuid import uuid4
 from datetime import datetime
 import models
@@ -39,3 +40,4 @@ class BaseModel:
         newbase["created_at"] = self.created_at.isoformat()
         newbase["updated_at"] = self.updated_at.isoformat()
         return newbase
+

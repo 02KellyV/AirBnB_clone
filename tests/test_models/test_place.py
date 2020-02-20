@@ -1,54 +1,67 @@
 #!/usr/bin/python3
-""" Unittests Place obj Module"""
-
+"""Test Place"""
 import unittest
-from models import storage
-from models.place import Place
-import json
-import os
 import pep8
-import uuid
+from models.base_model import BaseModel
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.state import State
+from models.review import Review
+from models.user import User
 
 
-class Test_BaseModel(unittest.TestCase):
-    """ Test Place obj Methods """
+class Testplace(unittest.TestCase):
 
-    def test_assert_stylepep8_amenity(self):
-        """ Test for style model """
-        style = pep8.StyleGuide(quiet=True)
-        new = style.check_files(['models/place.py'])
-        self.assertEqual(new.total_errors, 0, "Error pep8 base model")
+    def test_pep8_conformance_place(self):
+        """Test that we conform to PEP8."""
+        pep8style = pep8.StyleGuide(quiet=True)
+        result = pep8style.check_files(['models/place.py'])
+        self.assertEqual(result.total_errors, 0,
+                         "Found code style errors (and warnings).")
 
-    def test_assert_stylepep8_testsamenity(self):
-        """ Test for style tests """
-        style = pep8.StyleGuide(quiet=True)
-        new = style.check_files(['tests/test_models/test_place.py'])
-        self.assertEqual(new.total_errors, 0, "Error pep8 tests")
+    def test_class(self):
+        place1 = Place()
+        self.assertEqual(place1.__class__.__name__, "Place")
 
-    def test_assert_docstring(self):
-        """ Test docstring """
-        self.assertTrue(len(Place.__doc__) > 1)
-        self.assertTrue(len(Place.__init__.__doc__) > 1)
-        self.assertTrue(len(Place.__str__.__doc__) > 1)
-        self.assertTrue(len(Place.save.__doc__) > 1)
-        self.assertTrue(len(Place.to_dict.__doc__) > 1)
+    def test_father(self):
+        place1 = Place()
+        self.assertTrue(issubclass(place1.__class__, BaseModel))
 
-    def test_assert_is_instance(self):
-        """ Test init instance is ok """
-        a = Place()
-        self.asserIsInstance(a, Place)
-
-    def test_assert_is_subclass(self):
-        """ Test place is subclss BaseM """
-        a = Place()
-        self.assertTrue(issubclass(self.a.__class__, BaseModel), True)
-
-    def test_assert_args(self):
-        """Test place have args"""
-        a = Place(8)
-        self.assertEqual(type(a).__name__, "Place")
-        self.assertFalse(hasattr(a, "8"))
-
-
-if __name__ == "__main__":
-    unittest.main()
+    def test_place(self):
+        """
+        Test attributes of Class Place
+        """
+        my_amenity = Amenity()
+        my_city = City()
+        my_user = User()
+        my_place = Place()
+        my_place.city_id = my_city.id
+        my_place.user_id = my_user.id
+        my_place.name = 'Coworking'
+        my_place.description = 'description'
+        my_place.number_rooms = 4
+        my_place.number_bathrooms = 2
+        my_place.max_guest = 4
+        my_place.price_by_night = 200
+        my_place.latitude = 25.0342808
+        my_place.longitude = -77.3962784
+        my_place.amenity_ids = str(my_amenity.id)
+        self.assertEqual(my_place.city_id, my_city.id)
+        self.assertEqual(my_place.user_id, my_user.id)
+        self.assertEqual(my_place.name, 'Coworking')
+        self.assertEqual(my_place.description, 'description')
+        self.assertEqual(my_place.number_rooms, 4)
+        self.assertTrue(type(my_place.number_rooms), int)
+        self.assertEqual(my_place.number_bathrooms, 2)
+        self.assertTrue(type(my_place.number_bathrooms), int)
+        self.assertEqual(my_place.max_guest, 4)
+        self.assertTrue(type(my_place.max_guest), int)
+        self.assertEqual(my_place.price_by_night, 200)
+        self.assertTrue(type(my_place.price_by_night), int)
+        self.assertEqual(my_place.latitude, 25.0342808)
+        self.assertTrue(type(my_place.latitude), float)
+        self.assertEqual(my_place.longitude, -77.3962784)
+        self.assertTrue(type(my_place.longitude), float)
+        self.assertEqual(my_place.amenity_ids, str(my_amenity.id))
+        self.assertTrue(type(my_place.amenity_ids), str)
