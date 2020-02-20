@@ -42,4 +42,3 @@ class FileStorage:
                 othrdict_objs = json.load(json_f)
             for key, val in othrdict_objs.items():
                 self.__objects[key] = eval(val["__class__"])(**val)
-
