@@ -112,7 +112,7 @@ Then execute the file as follows:
 $ ./test_base_model.py
 ```
 
-The output should be as follows:
+Then output should be as follows:
 
 ```
 [BaseModel] (b6a6e15c-c67d-4312-9a75-9d084935e579) {'my_number': 89, 'name': 'Holberton', 'updated_at': datetime.datetime(2017, 9, 28, 21, 5, 54, 119434), 'id': 'b6a6e15c-c67d-4312-9a75-9d084935e579', 'created_at': datetime.datetime(2017, 9, 28, 21, 5, 54, 119427)}
