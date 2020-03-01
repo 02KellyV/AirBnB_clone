@@ -130,7 +130,7 @@ dmypy.json
 .pyre/
 
 # tests main
-jest_base_model.py
+test_base_model.py
 
 # File Json
 file.json
