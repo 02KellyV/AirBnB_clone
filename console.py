@@ -61,7 +61,8 @@ class HBNBCommand(cmd.Cmd):
             return
         models.storage.reload()
         for key, value in models.storage.all().items():
-            if value.__class__.__name__ == input2[0] and value.id == input2[1]:
+            if value.__class__.__name__ == input2.split(' ')[0] \
+               and value.id == input2.split(' ')[1]:
                 print(value.__str__())
                 return
         print("** no instance found **")
@@ -75,17 +76,14 @@ class HBNBCommand(cmd.Cmd):
         if _input.split(' ')[0] not in self.collection_keys:
             print("** class doesn't exist **")
             return
-        if len(_input.split) is 1:
+        if len(_input.split(' ')) is 1:
             print("** instance id missing **")
             return
-
         class_name, class_id = (_input.split(' ')[0], _input.split(' ')[1])
         query_key = class_name + '.' + class_id
-
         if query_key not in models.storage.all().keys():
             print("** no instance found **")
             return
-
         del models.storage.all()[query_key]
         models.storage.save()
 
@@ -136,6 +134,25 @@ class HBNBCommand(cmd.Cmd):
         setattr(models.storage.all()[query_key], key_name, input_value)
 
         models.storage.all()[query_key].save()
+
+    def default(self, inp):
+        """Retrieve all instances class using: <class name>.all()"""
+        count = 0
+        words = inp.split(".")
+
+        if words[0] in classes_dict and words[1] == "all()":
+            self.do_all(words[0])
+        elif words[0] in classes_dict and words[1] == "count()":
+            if (words[0] not in classes_dict):
+                print("** class doesn't exist **")
+                return (False)
+            else:
+                for key in models.storage.all():
+                    if key.startswith(words[0]):
+                        count += 1
+                print(count)
+        else:
+            print("*** Unknown syntax: {}".format(inp))
 
 
 if __name__ == '__main__':
